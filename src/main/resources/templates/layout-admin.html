@@ -8,14 +8,14 @@
 <body>
 <header class="row">
     <div class="col">
-        <div th:replace="~{admin/fragments/header :: header}"></div>
+        <div th:insert="~{fragments/header :: header}"></div>
     </div>
 </header>
 
 <main class="container">
     <!-- <nav class="row"> -->
     <div class="col">
-        <div th:replace="~{admin/fragments/nav :: nav}"></div>
+        <div th:replace="~{fragments/nav :: nav}"></div>
     </div>
     <!-- </nav> -->
 
@@ -28,7 +28,7 @@
 
 <footer class="row">
     <div class="col">
-        <div th:replace="~{admin/fragments/footer :: footer}"></div>
+        <div th:insert="~{fragments/footer :: footer}"></div>
     </div>
 </footer>
 </body>

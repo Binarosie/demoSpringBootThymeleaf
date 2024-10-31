@@ -49,7 +49,7 @@ public class CategoryController {
         int currentPage = page.orElse(1);
         int pageSize = size.orElse(3);
 
-        Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by("categoryName")); // Thay đổi nếu cần
+        Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by("name")); // Thay đổi nếu cần
         Page<Category> categoryPage = categoryService.findAll(pageable); // Lấy đối tượng Page<Category>
 
         model.addAttribute("categoryPage", categoryPage); // Truyền categoryPage vào model
@@ -145,11 +145,11 @@ public class CategoryController {
         int currentPage = page.orElse(1);
         int pageSize = size.orElse(3);
 
-        Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by("categoryName")); // Sửa Sort theo tên thực tế
+        Pageable pageable = PageRequest.of(currentPage - 1, pageSize, Sort.by("name")); // Sửa Sort theo tên thực tế
 
         Page<Category> resultPage;
         if (StringUtils.hasText(name)) {
-            resultPage = categoryService.findByCategoryNameContaining(name, pageable);
+            resultPage = categoryService.findByNameContaining(name, pageable);
             model.addAttribute("name", name);
         } else {
             resultPage = categoryService.findAll(pageable);

@@ -36,12 +36,12 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="category, iter : ${categoryPage.content}">
+            <tr th:each="cate, iter : ${categoryPage.content}">
                 <td th:text="${iter.index + 1}"></td>
 
                 <td>
-                    <img th:src="${cate.images != null and cate.images.startsWith('https') ? cate.images : '/image?fname=' + (category.images != null ? category.images : '')}"
-                         alt="Category Image" height="150" width="200" />
+                    <span th:text="${cate != null && cate.images != null && cate.images.startsWith('https') ? cate.images : '/image?fname=' + (cate.images != null ? cate.images : '')}"></span>
+
                 </td>
 
                 <td th:text="${cate.name}"></td>
