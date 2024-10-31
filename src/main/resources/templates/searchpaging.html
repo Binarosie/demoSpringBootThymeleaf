@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<head>
+    <title>Category List</title>
+</head>
+<body layout:decorate="~{layout}">
+<div layout:fragment="content">
+    <h2>Category List</h2>
+
+    <!-- Search form -->
+    <form th:action="@{/admin/category/searchpaginated}" method="get">
+        <input type="text" name="name" th:value="${name}" placeholder="Search by name" />
+        <button type="submit">Search</button>
+    </form>
+
+    <!-- Table of categories -->
+    <table>
+        <thead>
+        <tr>
+            <th>Category ID</th>
+            <th>Name</th>
+            <th>Image</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="category : ${categoryPage.content}">
+            <td th:text="${cate.ID}"></td>
+            <td th:text="${cate.name}"></td>
+            <td><img th:src="@{'/images/' + ${cate.images}}" alt="Image" width="100"/></td>
+            <td th:text="${cate.status == 1 ? 'Active' : 'Inactive'}"></td>
+            <td>
+                <a th:href="@{'/admin/category/edit/' + ${cate.ID}}">Edit</a> |
+                <a th:href="@{'/admin/category/delete/' + ${cate.ID}}">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- Pagination -->
+    <div>
+            <span th:each="pageNum : ${pageNumbers}">
+                <a th:href="@{'/category/searchpaginated?page=' + ${pageNum} + '&name=' + ${name}}"
+                   th:text="${pageNum}"></a>
+            </span>
+    </div>
+
+    <a th:href="@{/admin/category/insert}">Add New Category</a>
+</div>
+</body>
+</html>
